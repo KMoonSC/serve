@@ -1,7 +1,8 @@
 package com.myspring.customer.controller;
 
-import com.myspring.customer.service.HessianTestService;
+import com.myspring.customer.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ServeController {
 
     @Autowired
-    private HessianTestService hessianTestService;
+    @Qualifier("restTestService")
+    private TestService restTestService;
 
     @GetMapping("get_serve")
-    public String getServe() {
-        return hessianTestService.provideHessianServe();
+    public String getServeByRest() {
+        return restTestService.provideServe();
     }
 }
